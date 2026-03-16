@@ -24,6 +24,5 @@ Sink_the_fleet:
     __pycache__
     Consejos
     img
-    Ejercicio.ipynb
     main.py
     utils.py

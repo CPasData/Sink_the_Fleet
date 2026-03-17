@@ -1,6 +1,6 @@
 import numpy as np
 import random
-import Funciones
+import utils
 import time
 import math
 
@@ -37,19 +37,19 @@ while exit == False: # Condicion de juego
         else:
             dimension = 5
 
-        p1_boat = Funciones.crea_tablero(dimension) # Creamos tablero de jugador para barcos
+        p1_boat = utils.crea_tablero(dimension) # Creamos tablero de jugador para barcos
         print("\n Tu tablero de barcos \n", p1_boat)
         time.sleep(1)
-        p1_shot = Funciones.crea_tablero(dimension) # Creamos tablero de jugador para disparos
+        p1_shot = utils.crea_tablero(dimension) # Creamos tablero de jugador para disparos
         print("\n Tu tablero de disparo \n", p1_shot)
         time.sleep(1)
-        npc_boat = Funciones.crea_tablero(dimension) # Creamos tableros del NPC
-        npc_shot = Funciones.crea_tablero(dimension)
+        npc_boat = utils.crea_tablero(dimension) # Creamos tableros del NPC
+        npc_shot = utils.crea_tablero(dimension)
 
-        p1_boat_mod = Funciones.flota(p1_boat) # Asignamos tablero modificado al tablero con barcos del jugador
+        p1_boat_mod = utils.flota(p1_boat) # Asignamos tablero modificado al tablero con barcos del jugador
         print("\n Aquí tienes tu tablero de juego con los barcos de forma aleatoria\n", p1_boat_mod)
         time.sleep(1)
-        npc_boat_mod = Funciones.flota(npc_boat) # Lo mismo con el tablero del NPC
+        npc_boat_mod = utils.flota(npc_boat) # Lo mismo con el tablero del NPC
 
         start = random.randint(1,2) # Tirada de moneda para decidir quien empieza
         p1 = False
@@ -74,18 +74,18 @@ while exit == False: # Condicion de juego
                 fila = int(input("Elige fila "))
                 columna = int(input("Elige columna "))
 
-                coordenada = Funciones.check_coordenada(fila, columna, p1_shot)
+                coordenada = utils.check_coordenada(fila, columna, p1_shot)
                 print(f"Tu coordenada es {coordenada}") 
                 time.sleep(1)
 
-                Funciones.disparar(npc_boat_mod, p1_shot, coordenada)
+                utils.disparar(npc_boat_mod, p1_shot, coordenada)
                 p1 = False # Convertimos la variable jugador en False para que pase al siguiente jugador
             
             else:
-                coordenada_random = Funciones.generar_coordenada(npc_shot)
+                coordenada_random = utils.generar_coordenada(npc_shot)
                 print(f"La coordenada del rival es {coordenada_random}")
                 time.sleep(1)
-                Funciones.recibir_disparo(p1_boat_mod, npc_shot, coordenada_random)
+                utils.recibir_disparo(p1_boat_mod, npc_shot, coordenada_random)
                 print("Tablero de barcos")
                 print(p1_boat_mod)
                 p1 = True # Volvemos a convertir en True para que el siguiente turno sea del jugador
@@ -102,10 +102,10 @@ while exit == False: # Condicion de juego
     else:
         reset = input("¿Quieres volver a jugar? y/n ").lower()
         if reset == "y":
-            Funciones.arregla_barcos(p1_boat_mod)
-            Funciones.arregla_barcos(p1_shot)
-            Funciones.arregla_barcos(npc_boat_mod)
-            Funciones.arregla_barcos(npc_shot) # Reseteamos todos los tableros para volver a jugar
+            utils.arregla_barcos(p1_boat_mod)
+            utils.arregla_barcos(p1_shot)
+            utils.arregla_barcos(npc_boat_mod)
+            utils.arregla_barcos(npc_shot) # Reseteamos todos los tableros para volver a jugar
         else:
             print("¡Hasta pronto!")
             exit = True

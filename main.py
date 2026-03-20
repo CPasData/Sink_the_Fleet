@@ -109,8 +109,3 @@ while exit == False: # Condicion de juego
         else:
             print("¡Hasta pronto!")
             exit = True
-
-
-    
-
-
